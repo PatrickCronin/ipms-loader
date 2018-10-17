@@ -6,12 +6,12 @@
 
 # Program components
 
-1. GitHub repo
-1. A script for calling the ETL module
-1. An ETL Perl module
-1. An ETL sub-module for each required "entity" (not necessarily a target table)
-1. DSN for target database
-1. DBIC schemas for target tables
+1. GitHub repo (done)
+1. A script for calling the ETL module (done)
+1. An ETL Perl module (started)
+1. An ETL sub-module for each required "entity" (not necessarily a target table) (started)
+1. DSN for target database (done)
+1. DBIC schemas for target tables (done)
 1. Source table design
-1. XLS reader module per source table
+1. XLS reader module per source table (done)
 1. Tests
