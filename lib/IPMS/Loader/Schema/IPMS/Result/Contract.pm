@@ -587,6 +587,21 @@ __PACKAGE__->belongs_to(
   },
 );
 
+=head2 contract_sub_activity
+
+Type: belongs_to
+
+Related object: L<IPMS::Loader::Schema::IPMS::Result::SubActivity>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "contract_sub_activity",
+  "IPMS::Loader::Schema::IPMS::Result::SubActivity",
+  { sub_activity_id => "contract_sub_activity_id" },
+  { is_deferrable => 1, on_delete => "NO ACTION", on_update => "NO ACTION" },
+);
+
 =head2 payment_schedule_payment_s_contracts
 
 Type: has_many
@@ -620,8 +635,8 @@ __PACKAGE__->has_many(
 );
 #>>>
 
-# Created by DBIx::Class::Schema::Loader v0.07049 @ 2018-10-17 14:29:15
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:/Cg9S1dpeT9ntuI2nLilBA
+# Created by DBIx::Class::Schema::Loader v0.07049 @ 2018-10-17 15:00:33
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:cg9utIZjEzVKyMCkN/DnEw
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

@@ -19,6 +19,7 @@ sub _build_loader_options ( $self, @ ) {
         contract_proc
         list_contract_type
         list_currency
+        sub_activity
         payment_schedule
     );
     my $tables_and_views_alternation

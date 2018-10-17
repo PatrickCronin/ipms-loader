@@ -1,0 +1,7 @@
+#!perl
+
+use IPMS::Loader::perlbase;
+
+use IPMS::Loader;
+
+IPMS::Loader->new_with_options->run;
