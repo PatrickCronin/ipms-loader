@@ -4,27 +4,6 @@ use IPMS::Loader::Moose;
 
 use IPMS::Loader::Types qw( HashRef NonEmptySimpleStr PortNumber );
 
-has database => (
-    is      => 'ro',
-    isa     => NonEmptySimpleStr,
-    lazy    => 1,
-    builder => '_build_database',
-);
-
-has host => (
-    is      => 'ro',
-    isa     => NonEmptySimpleStr,
-    lazy    => 1,
-    builder => '_build_host',
-);
-
-has port => (
-    is      => 'ro',
-    isa     => PortNumber,
-    lazy    => 1,
-    builder => '_build_port',
-);
-
 has _db_config => (
     is      => 'ro',
     isa     => HashRef,
@@ -37,27 +16,12 @@ with qw(
     IPMS::Loader::Role::HasConfig
 );
 
-# Note that the complete database name in Postgres should be 63 characters or
-# less.
-sub _build_database ( $self, @ ) {
-    return $self->_db_config->{database};
-}
-
 sub _build_db_config ( $self, @ ) {
-    return $self->_config->webapp_database_config;
-}
-
-sub _build_host ( $self, @ ) {
-    return $self->_db_config->{host};
-}
-
-sub _build_port ( $self, @ ) {
-    return $self->_db_config->{port};
+    return $self->_config->ipms_database_config;
 }
 
 sub _build_dsn ( $self, @ ) {
-    return
-        sprintf( 'dbi:Pg:dbname=%s;host=%s', $self->database, $self->host );
+    return 'dbi:ODBC:DSN=pronacom_ipms';
 }
 
 sub _build_username ( $self, @ ) {
@@ -70,12 +34,14 @@ sub _build_password ( $self, @ ) {
 
 sub _build_dbi_attributes ( $self, @ ) {
     return {
-        AutoCommit => 1,
-        RaiseError => 1,
-        PrintError => 1,
-        PrintWarn  => 1,
-        quote_char => q{"},
-        name_sep   => q{.},
+        AutoCommit  => 1,
+        LongTruncOk => 0,
+        LongReadLen => 104857600,    # 100MB max field length
+        PrintError  => 1,
+        PrintWarn   => 1,
+        RaiseError  => 1,
+        quote_char  => [qw([ ])],
+        name_sep    => q{.},
     };
 }
 

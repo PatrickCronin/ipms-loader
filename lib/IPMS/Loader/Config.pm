@@ -56,7 +56,7 @@ sub _build_config ( $self, @ ) {
 
 sub _build_ipms_database_config ( $self, @ ) {
     my $config = $self->_config->{'IPMS Database'};
-    $self->_ensure_all_truthy( 'IPMS DB', $config );
+    $self->_ensure_all_truthy( 'dsn', $config );
     return $config;
 }
 
