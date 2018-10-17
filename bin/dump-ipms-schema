@@ -1,0 +1,9 @@
+#!perl
+
+# PODNAME: dump-ipms-schema
+
+use IPMS::Loader::perlbase;
+
+use IPMS::Loader::Storage::IPMSSchemaDumper ();
+
+IPMS::Loader::Storage::IPMSSchemaDumper->new_with_options->run;
